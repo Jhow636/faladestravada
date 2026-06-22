@@ -1,15 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    // --- CONFIGURAÇÃO DO WHATSAPP ---
-    const WHATSAPP_NUMBER = "5511999999999"; 
-
-    // --- CRONÔMETRO REGRESSIVO (COUNTDOWN) ---
+    // --- CRONÔMETRO REGRESSIVO ---
     function startCountdown() {
-        const countdownDuration = 48 * 60 * 60 * 1000; 
-        const endTime = localStorage.getItem('countdownEnd') ? 
-            parseInt(localStorage.getItem('countdownEnd')) : 
+        const countdownDuration = 48 * 60 * 60 * 1000;
+        const endTime = localStorage.getItem('countdownEnd') ?
+            parseInt(localStorage.getItem('countdownEnd')) :
             Date.now() + countdownDuration;
-        
+
         localStorage.setItem('countdownEnd', endTime);
 
         function updateCountdown() {
@@ -36,30 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     startCountdown();
 
-    // --- ANIMAÇÃO DA BARRA DE PROGRESSO DE VAGAS ---
-    function animateProgressBar() {
-        const progressFill = document.getElementById('progress-fill');
-        if (progressFill) {
-            setTimeout(() => {
-                progressFill.style.transition = 'width 3s ease-in-out';
-                progressFill.style.width = '70%';
-            }, 100);
-        }
-    }
-
-    animateProgressBar();
-
-    // --- ATUALIZA VAGAS DISPONÍVEIS ---
-    function updateAvailableSlots() {
-        const availableSlots = document.getElementById('available-slots');
-        if (availableSlots) {
-            availableSlots.textContent = '3';
-        }
-    }
-
-    updateAvailableSlots();
-
-    // --- ROLAGEM SUAVE ---
+    // --- ROLAGEM SUAVE AO CLICAR NO CTA DO HERO ---
     const scrollBtn = document.querySelector('.cta-scroll');
     const pricingSection = document.getElementById('pricing');
 
@@ -69,32 +43,30 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // --- AGENT DE DISPARO WHATSAPP COM COCOPY DE CONVERSÃO ---
-    const whatsappButtons = document.querySelectorAll('.whatsapp-btn');
+    // --- LIGHTBOX DAS IMAGENS ---
+    const overlay = document.createElement('div');
+    overlay.className = 'lightbox-overlay';
+    const lightboxImg = document.createElement('img');
+    overlay.appendChild(lightboxImg);
+    document.body.appendChild(overlay);
 
-    whatsappButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const planName = this.getAttribute('data-plan');
-            let message = "";
-
-            if (planName === "Express") {
-                message = "Olá! Acessei a sua página de vendas e quero garantir minha vaga na Imersão Intensiva de Pronúncia através do Plano Express por R$ 49,90. Como fazemos com o agendamento?";
-            } else if (planName === "Premium") {
-                message = "Olá! Acessei a sua página de vendas e quero garantir minha vaga na Imersão Intensiva de Pronúncia através do Plano Premium por R$ 97,00. Como podemos alinhar os horários?";
-            } else if (planName === "Urgency") {
-                message = "Olá! Vi sua página com as vagas limitadas e não quero perder essa oportunidade da Imersão Intensiva de Pronúncia! Qual o próximo passo para garantir minha vaga?";
-            } else {
-                message = "Olá! Quero preencher uma das 10 vagas disponíveis desta semana para a Imersão Intensiva de Pronúncia em Inglês. Qual o próximo passo?";
-            }
-
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
-
-            window.open(whatsappUrl, '_blank');
+    document.querySelectorAll('.preview-card img').forEach(img => {
+        img.addEventListener('click', function() {
+            lightboxImg.src = this.src;
+            lightboxImg.alt = this.alt;
+            overlay.classList.add('active');
         });
     });
 
-    // --- EFEITO ACORDION DO FAQ ---
+    overlay.addEventListener('click', function() {
+        overlay.classList.remove('active');
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') overlay.classList.remove('active');
+    });
+
+    // --- ACORDEÃO DO FAQ ---
     const accordionHeaders = document.querySelectorAll('.accordion-header');
 
     accordionHeaders.forEach(header => {
@@ -112,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             if (!isOpen) {
                 item.classList.add('active');
-                content.style.maxHeight = content.scrollHeight + 48 + "px"; 
+                content.style.maxHeight = content.scrollHeight + 48 + "px";
                 content.style.paddingTop = "16px";
                 content.style.paddingBottom = "24px";
             }
