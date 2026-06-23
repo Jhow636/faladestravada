@@ -634,15 +634,67 @@ h1, h2, h3, h4, h5, h6 {
    ============================================= */
 @media (max-width: 860px) {
     .hero-content { grid-template-columns: 1fr; text-align: center; }
-    .hero-cta-wrapper { align-items: center; } 
+    .hero-cta-wrapper { align-items: center; }
     .hero-visual { display: none; }
     .hero-sub { margin-left: auto; margin-right: auto; }
     .problem-cards, .solution-grid, .pricing-grid, .bonus-box, .testimonial-grid { grid-template-columns: 1fr; }
     .scarcity-inner { flex-direction: column; }
 }
 @media (max-width: 640px) {
-    :root { --section-pad: 80px; }
-    .urgency-bar-content { flex-direction: column; gap: 10px; }
+    :root { --section-pad: 72px; }
+
+    /* Evita overflow horizontal em toda a página */
+    html, body { overflow-x: hidden; max-width: 100%; }
+    * { word-break: break-word; }
+
+    /* Hero */
+    .hero { padding: 64px 0 0; }
+    .hero h1 { font-size: 2rem; }
+    .hero-sub { font-size: 1rem; }
+    .hero-bar { gap: 16px; padding: 16px 16px; justify-content: flex-start; }
+    .hero-bar span { font-size: 0.75rem; }
+    .live-pill { font-size: 0.7rem; padding: 6px 14px; white-space: normal; text-align: center; }
+
+    /* Urgency bar */
+    .urgency-bar-content { flex-direction: column; gap: 10px; text-align: center; }
+    .countdown-label-left { justify-content: center; font-size: 0.85rem; }
+
+    /* Botões */
+    .btn-purchase-striking { font-size: 0.95rem; padding: 18px 20px; }
+    .btn-whatsapp { font-size: 0.95rem; padding: 16px 20px; }
+
+    /* Seções */
+    .container { padding: 0 16px; }
+    .problems h2, .testimonials h2, .faq h2 { font-size: 1.7rem; }
+    .problem-conclusion { padding: 28px 24px; }
+    .quote-mark { font-size: 3.5rem; }
+
+    /* Preview grid */
+    .preview-grid { grid-template-columns: 1fr; }
+    .preview-card.main-preview { grid-column: auto; }
+
+    /* Solution */
+    .solution-list li { font-size: 0.97rem; }
+
+    /* Pricing */
+    .price-card { padding: 32px 16px; }
+    .price-main { font-size: 2.4rem; }
+    .delivery-box { padding: 18px 14px; }
+    .delivery-step p { font-size: 0.85rem; }
+
+    /* Garantia */
+    .guarantee-inner { flex-direction: column; text-align: center; padding: 28px 20px; }
+
+    /* Accordion */
+    .accordion-header { font-size: 0.92rem; padding: 18px 16px; }
+
+    /* Mentoria */
+    .mentorship-card { padding: 28px 16px; }
+    .mentorship-feats { grid-template-columns: 1fr; }
+    .mentorship-schedule { padding: 16px; }
+
+    /* FAQ CTA */
+    .faq-cta .btn-whatsapp, .faq-cta .btn-purchase-striking { max-width: 100%; }
 }
 /* =============================================
    PREVIEW GALLERY
