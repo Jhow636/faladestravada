@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
             fbq('track', 'InitiateCheckout', {
                 value: 29.90,
                 currency: 'BRL',
-                content_name: 'Sistema Autodidata de Inglês no Notion'
+                content_name: 'Método Notion + Mentoria de Inglês'
             });
         });
     });
