@@ -66,6 +66,17 @@ document.addEventListener("DOMContentLoaded", function() {
         if (e.key === 'Escape') overlay.classList.remove('active');
     });
 
+    // --- EVENTO DE COMPRA META PIXEL ---
+    document.querySelectorAll('.btn-purchase-striking').forEach(btn => {
+        btn.addEventListener('click', function() {
+            fbq('track', 'InitiateCheckout', {
+                value: 29.90,
+                currency: 'BRL',
+                content_name: 'Sistema Autodidata de Inglês no Notion'
+            });
+        });
+    });
+
     // --- ACORDEÃO DO FAQ ---
     const accordionHeaders = document.querySelectorAll('.accordion-header');
 
