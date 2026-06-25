@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll('.btn-purchase-striking').forEach(btn => {
         btn.addEventListener('click', function() {
             fbq('track', 'InitiateCheckout', {
-                value: 29.90,
+                value: 19.90,
                 currency: 'BRL',
                 content_name: 'Método Notion + Mentoria de Inglês'
             });
